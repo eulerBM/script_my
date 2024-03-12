@@ -41,9 +41,8 @@ class Main:
             'concurso': str(numero_concurso),
         }
 
-       
-
         return context
+    
     
     def enviar_info_whats(self):
     
@@ -51,11 +50,7 @@ class Main:
         infos_quina = self.info_quina()
         resultado_quina = infos_quina['resultado']
 
-        
-
         input(f'parando aqui, {resultado_quina}')
-        
-        
 
         if int(infos_quina['resultado']) == numeros_db:
     
