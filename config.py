@@ -2,6 +2,8 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 import sqlite3
 
+# Selenium
+
 servico = Service(ChromeDriverManager().install())
 
 #URLS
@@ -9,12 +11,6 @@ servico = Service(ChromeDriverManager().install())
 url_quina = 'https://www.google.com/search?q=Quina&oq=Quina&gs_lcrp=EgZjaHJvbWUyDwgAEEUYORiDARixAxiABDIQCAEQABiDARixAxiABBiKBTIGCAIQABgDMg0IAxAAGIMBGLEDGIAEMhAIBBAAGIMBGLEDGIAEGIoFMhAIBRAAGIMBGLEDGIAEGIoFMgYIBhAAGAMyEAgHEAAYgwEYsQMYgAQYigUyDQgIEAAYgwEYsQMYgAQyBwgJEAAYjwLSAQg0NTY3ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8'
 
 url_whats = 'https://web.whatsapp.com/'
-
-#Utils
-
-def num_divi(numeros):
-    pares = [numeros.text[i:i+2] for i in range(0, len(numeros.text), 2)]
-    return pares
 
      
 #Banco de dados
