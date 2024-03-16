@@ -64,6 +64,7 @@ class Main:
                 return False
 
         else:
+            
             sleep(3)
             input('A quina atualizou aperte ENTER para continuar...')
                 
