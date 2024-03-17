@@ -15,6 +15,7 @@ class Main:
         #self.navegador_whats = webdriver.Chrome(service=servico)
         #self.navegador_whats.get(url_whats)
 
+
     def info_quina(self):
         numeros_quina = self.navegador_quina.find_elements(By.CLASS_NAME, 'MDTDab')
         numero_concurso = self.navegador_quina.find_element(By.CLASS_NAME, 'qLLird').text
@@ -46,7 +47,6 @@ class Main:
 
         return context
     
-    
     def enviar_info_whats(self):
     
         numeros_db = db_get()[1]  
@@ -57,14 +57,12 @@ class Main:
         print(f' Resultado de ontem {numeros_db}')
 
         if resultado_quina == numeros_db:
-    
-                self.navegador_quina.refresh()
-                print('A quina não atualizou :(')
-                sleep(3)
-                return False
+            self.navegador_quina.refresh()
+            print('A quina não atualizou :(')
+            sleep(3)
+            return False
 
         else:
-            
             sleep(3)
             input('A quina atualizou aperte ENTER para continuar...')
                 
