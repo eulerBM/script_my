@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium import webdriver
-from config import servico, url_quina, url_whats , db_get
-from utils import quina_filtrar_numeros
+from config import servico, url_quina, url_whats, db_delete, db_all_objets, db_add
+from utils import quina_filtrar_numeros, quina_tirar_concletes
 from time import sleep
 
 class Main:
@@ -26,11 +26,11 @@ class Main:
 
         if filter_num_int == 9: 
             numero_filtrado = quina_filtrar_numeros(resultado)
-            print(numero_filtrado)
+            print('O Numero tem 9 digitos, ele passou por um filtro!')
 
             context = {
 
-            'resultado': numero_filtrado,
+            'resultado': int(numero_filtrado),
             'concurso': str(numero_concurso),
             
             }
@@ -38,23 +38,26 @@ class Main:
             print(context)
 
             return context
+        
+        print('O Numero tem todos os digitos, ele não passou por filtro')
 
         context = {
 
-            'resultado': resultado,
+            'resultado': quina_tirar_concletes(resultado),
             'concurso': str(numero_concurso),
         }
 
         return context
     
     def enviar_info_whats(self):
-    
-        numeros_db = db_get()[1]  
+
+        numeros_db = int(db_all_objets()[2])
+        
         infos_quina = self.info_quina()
-        resultado_quina = int(infos_quina['resultado'])
+        resultado_quina = infos_quina['resultado']
 
         print(f' Resultado de hoje {resultado_quina}')
-        print(f' Resultado de ontem {numeros_db}')
+        print(f' Resultado de onte {numeros_db}')
 
         if resultado_quina == numeros_db:
             self.navegador_quina.refresh()
@@ -63,6 +66,12 @@ class Main:
             return False
 
         else:
+
+            # DELETAR A QUINA DO BANCO
+            # ATUALIZAR COM O NOVO SORTEIO DA QUINA
+            # E ENVIAR PRO WHATS DA MAE E PAI
+
+            
             sleep(3)
             input('A quina atualizou aperte ENTER para continuar...')
                 

@@ -10,3 +10,8 @@ def quina_filtrar_numeros(num: list) -> str:
     resultado_sem_conchete1 = resultado_sem_espacos.replace("[", "")
     resultado_sem_conchete2 = resultado_sem_conchete1.replace("]", "")
     return resultado_sem_conchete2
+
+def quina_tirar_concletes(num: list) -> int:
+    resultado_sem_conchete1 = str(num).replace("[", "")
+    resultado_sem_conchete2 = resultado_sem_conchete1.replace("]", "")
+    return int(resultado_sem_conchete2)

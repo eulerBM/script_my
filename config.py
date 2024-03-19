@@ -14,22 +14,52 @@ url_whats = 'https://web.whatsapp.com/'
      
 #Banco de dados
 
-banco_connect = sqlite3.connect('banco_dados.db')
+banco_conexao = sqlite3.connect('banco_dados.db')
+
 
 def db_all_objets():
-    cursor = banco_connect.cursor()
-    print(cursor.execute("SELECT * FROM jogo").fetchall())
+    try:
+        cursor = banco_conexao.cursor()
+        cursor.execute("SELECT * FROM jogo")
+        print('Buscado com sucesso !')
+        return cursor.fetchone()
 
-def db_add(concurso, numeros):
-    banco_connect.cursor().execute(f"INSERT INTO jogo VALUES ('{concurso}','{numeros}')")
-    banco_connect.commit()
+    except:   
+        print('Erro: Não conseguimos pegar os objetos !')
 
-def db_get():
-    bd = banco_connect.cursor().execute("SELECT * FROM jogo")
-    return bd.fetchone()
+    finally:
+        cursor.close()
 
-def db_delete():
-    pass
+
+def db_add(concurso: int, numeros:int) -> str :
+    try:
+        cursor = banco_conexao.cursor()
+        cursor.execute(f"INSERT INTO jogo VALUES ('{concurso}','{numeros}')")
+        print('Adicionado com Sucesso')
+
+    except:
+        print('Erro: Não conseguimos adicionar !')
+
+    finally:
+        cursor.close()
+
+
+
+def db_delete() -> str :
+    try:
+        cursor = banco_conexao.cursor()
+        cursor.execute("DELETE FROM jogo")
+        print('Deletado com Sucesso')
+
+    except:
+        print('Erro: Não conseguimos deletar !')
+
+    finally:
+        cursor.close()
+    
+
+
+    
 
         
 
