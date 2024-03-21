@@ -66,11 +66,9 @@ class Main:
             return False
 
         else:
-
             # DELETAR A QUINA DO BANCO
             # ATUALIZAR COM O NOVO SORTEIO DA QUINA
             # E ENVIAR PRO WHATS DA MAE E PAI
-
             sleep(3)
             input('A quina atualizou aperte ENTER para continuar...')
                 
