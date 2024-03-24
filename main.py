@@ -15,7 +15,6 @@ class Main:
         #self.navegador_whats = webdriver.Chrome(service=servico)
         #self.navegador_whats.get(url_whats)
 
-
     def info_quina(self):
         numeros_quina = self.navegador_quina.find_elements(By.CLASS_NAME, 'MDTDab')
         numero_concurso = self.navegador_quina.find_element(By.CLASS_NAME, 'qLLird').text
@@ -68,8 +67,11 @@ class Main:
         else:
             
             # DELETAR A QUINA DO BANCO
+
             # ATUALIZAR COM O NOVO SORTEIO DA QUINA
+
             # E ENVIAR PRO WHATS DA MAE E PAI
+            
             sleep(3)
             input('A quina atualizou aperte ENTER para continuar...')
                 
