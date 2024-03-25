@@ -59,6 +59,7 @@ class Main:
         print(f' Resultado de onte {numeros_db}')
 
         if resultado_quina == numeros_db:
+            
             self.navegador_quina.refresh()
             print('A quina não atualizou :(')
             sleep(3)

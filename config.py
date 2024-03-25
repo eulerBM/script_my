@@ -30,7 +30,6 @@ def db_all_objets():
     finally:
         cursor.close()
 
-
 def db_add(concurso: int, numeros:int) -> str :
     try:
         cursor = banco_conexao.cursor()
@@ -42,8 +41,6 @@ def db_add(concurso: int, numeros:int) -> str :
 
     finally:
         cursor.close()
-
-
 
 def db_delete() -> str :
     try:
