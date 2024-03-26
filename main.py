@@ -42,7 +42,7 @@ class Main:
 
         context = {
 
-            'resultado': quina_tirar_concletes(resultado),
+            'resultado': int(quina_tirar_concletes(resultado)),
             'concurso': str(numero_concurso),
         }
 
@@ -53,7 +53,9 @@ class Main:
         numeros_db = int(db_all_objets()[2])
         
         infos_quina = self.info_quina()
+
         resultado_quina = infos_quina['resultado']
+        concurso_quina = infos_quina['concurso']
 
         print(f' Resultado de hoje {resultado_quina}')
         print(f' Resultado de onte {numeros_db}')
@@ -66,12 +68,18 @@ class Main:
             return False
 
         else:
-            
-            # DELETAR A QUINA DO BANCO
 
-            # ATUALIZAR COM O NOVO SORTEIO DA QUINA
+            db_delete()
 
-            # E ENVIAR PRO WHATS DA MAE E PAI
+            sleep(3)
+
+            db_add(concurso=infos_quina['concurso'], numeros=infos_quina['resultado'])
+
+            # DELETAR A QUINA DO BANCO (Feito)
+
+            # ATUALIZAR COM O NOVO SORTEIO DA QUINA (feito)
+
+            # E ENVIAR PRO WHATS DA MAE E PAI (Em processo...)
             
             sleep(3)
             input('A quina atualizou aperte ENTER para continuar...')

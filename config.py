@@ -30,14 +30,16 @@ def db_all_objets():
     finally:
         cursor.close()
 
-def db_add(concurso: int, numeros:int) -> str :
+def db_add(concurso:str, numeros:int) -> str :
     try:
         cursor = banco_conexao.cursor()
-        cursor.execute(f"INSERT INTO jogo VALUES ('{concurso}','{numeros}')")
-        print('Adicionado com Sucesso')
+        cursor.execute(f"INSERT INTO jogo (id, concurso, numeros) VALUES (1, '{concurso}', {numeros});")
+        banco_conexao.commit()
+        print('Adicionado com sucesso')
+        return 'Adicionado com sucesso'
 
     except:
-        print('Erro: Não conseguimos adicionar !')
+        return 'Erro: Não conseguimos adicionar !'
 
     finally:
         cursor.close()
@@ -46,6 +48,7 @@ def db_delete() -> str :
     try:
         cursor = banco_conexao.cursor()
         cursor.execute("DELETE FROM jogo")
+        banco_conexao.commit()
         print('Deletado com Sucesso')
 
     except:
