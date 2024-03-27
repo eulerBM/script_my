@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 from selenium import webdriver
-from config import servico, url_quina, url_whats, db_delete, db_all_objets, db_add
+from config import servico, url_quina, url_whats, db_delete, db_add, db_get
 from utils import quina_filtrar_numeros, quina_tirar_concletes
 from time import sleep
 
@@ -12,8 +12,8 @@ class Main:
         self.navegador_quina.get(url_quina)
 
         #Whats
-        #self.navegador_whats = webdriver.Chrome(service=servico)
-        #self.navegador_whats.get(url_whats)
+        self.navegador_whats = webdriver.Chrome(service=servico)
+        self.navegador_whats.get(url_whats)
 
     def info_quina(self):
         numeros_quina = self.navegador_quina.find_elements(By.CLASS_NAME, 'MDTDab')
@@ -50,8 +50,14 @@ class Main:
     
     def enviar_info_whats(self):
 
-        numeros_db = int(db_all_objets()[2])
-        
+        #Infos do banco
+        infos_db = db_get()
+
+        numeros_db = int(infos_db[2])
+        db_concurso = infos_db[1]
+
+
+        #Infos da net
         infos_quina = self.info_quina()
 
         resultado_quina = infos_quina['resultado']
@@ -75,14 +81,9 @@ class Main:
 
             db_add(concurso=infos_quina['concurso'], numeros=infos_quina['resultado'])
 
-            # DELETAR A QUINA DO BANCO (Feito)
-
-            # ATUALIZAR COM O NOVO SORTEIO DA QUINA (feito)
-
-            # E ENVIAR PRO WHATS DA MAE E PAI (Em processo...)
-            
             sleep(3)
-            input('A quina atualizou aperte ENTER para continuar...')
+            print('A quina atualizou...')
+            input('Pegue o telefone e escaneie o QRCODE')
                 
             caixa_pesquisa = self.navegador_whats.find_element(By.XPATH, '//*[@id="side"]/div[1]/div/div[2]/div[2]/div/div[1]/p')
             caixa_pesquisa.click()
@@ -95,8 +96,12 @@ class Main:
             conversa_mae = self.navegador_whats.find_element(By.XPATH, '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[1]')
             conversa_mae.click()
 
-            conversa_mae.send_keys(f'Quina concurso []')
-            input('esperando!!!')
+            conversa_mae.send_keys(f'Quina: {db_concurso} / Resultado: {numeros_db}')
+
+            botao_enviar = self.navegador_whats.find_element(By.XPATH, '/html/body/div[1]/div/div[2]/div[4]/div/footer/div[1]/div/span[2]/div/div[2]/div[2]/button')
+            botao_enviar.click()
+
+            input('Terminou o Processo!!!!')
 
             return True
         

@@ -17,7 +17,7 @@ url_whats = 'https://web.whatsapp.com/'
 
 banco_conexao = sqlite3.connect('banco_dados.db')
 
-def db_all_objets():
+def db_get():
     try:
         cursor = banco_conexao.cursor()
         cursor.execute("SELECT * FROM jogo")
