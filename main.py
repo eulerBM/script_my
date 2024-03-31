@@ -31,7 +31,6 @@ class Main:
 
             'resultado': int(numero_filtrado),
             'concurso': str(numero_concurso),
-            
             }
 
             print(context)
@@ -106,31 +105,6 @@ class Main:
             return True
         
             
-            
-            
-
-
-
-
-                
-
-        
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 if __name__ == "__main__":
     main = Main()
