@@ -101,13 +101,21 @@ class Main:
             botao_enviar.click()
 
             input('Terminou o Processo!!!!')
-
+            
             return True
+            
         
 
 if __name__ == "__main__":
     main = Main()
-    main.enviar_info_whats()
+
+    while True:
+        if main.enviar_info_whats():
+            break
+            
+
+        
+
             
 
     
