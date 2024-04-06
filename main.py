@@ -15,7 +15,8 @@ class Main:
         self.navegador_whats = webdriver.Chrome(service=servico)
         self.navegador_whats.get(url_whats)
 
-    def info_quina(self):
+    def info_quina(self) -> dict[int, str]:
+
         numeros_quina = self.navegador_quina.find_elements(By.CLASS_NAME, 'MDTDab')
         numero_concurso = self.navegador_quina.find_element(By.CLASS_NAME, 'qLLird').text
 
@@ -47,14 +48,13 @@ class Main:
 
         return context
     
-    def enviar_info_whats(self):
+    def enviar_info_whats(self) -> bool:
 
         #Infos do banco
         infos_db = db_get()
 
         numeros_db = int(infos_db[2])
         db_concurso = infos_db[1]
-
 
         #Infos da net
         infos_quina = self.info_quina()
@@ -105,7 +105,6 @@ class Main:
             return True
             
         
-
 if __name__ == "__main__":
     main = Main()
 
