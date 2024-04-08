@@ -103,8 +103,7 @@ class Main:
             input('Terminou o Processo!!!!')
             
             return True
-            
-        
+              
 if __name__ == "__main__":
     main = Main()
 
