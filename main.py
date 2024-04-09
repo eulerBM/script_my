@@ -81,7 +81,7 @@ class Main:
             db_add(concurso=infos_quina['concurso'], numeros=infos_quina['resultado'])
 
             sleep(3)
-            print('A quina atualizou...')
+            print('Atualizou...')
             input('Pegue o telefone e escaneie o QRCODE...')
                 
             caixa_pesquisa = self.navegador_whats.find_element(By.XPATH, '//*[@id="side"]/div[1]/div/div[2]/div[2]/div/div[1]/p')
